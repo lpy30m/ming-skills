@@ -11,7 +11,7 @@ Android Native 层 Trace 工具包（xfinject 注入链路 + xfqtrace 引擎 + �
 
 - 当前：**v2.2**（2026-08 发布）
 - v2.2 变更：初步 bypass 部分检测；新增无痕 hook backend(3) + `xfqtrace-hide.kpm`（规避 hook/trace 检测；隐藏 xfQTrace/xfinject 相关 VMA、payload、stage、helper 映射；shadow-page/xfqhide shadow inline hook；降低 /proc/pid/maps、inline patch、trace payload 暴露）
-- ⚠ **正常推荐 2.1**：2.2 测试时间不足，可能还有 bug 待发现（4 系内核 shadow-page 方案可用）
+- [警告] **正常推荐 2.1**：2.2 测试时间不足，可能还有 bug 待发现（4 系内核 shadow-page 方案可用）
 
 ## 安装与更新
 
@@ -31,7 +31,7 @@ kit 压缩包双密码：`xf666`（部分文件）/ `xf777`（bin/docs 等）—
 ```
 bin/        libxfqtrace.so(9.7M)、xfinjectd、xfqtrace-hide.kpm、7z/lz4/pidcat
 docs/       USAGE.md（44KB 完整指南：第一章快速使用/第二章 DSL/第四章排查）
-examples/   30+ 真实站点 recipe（淘宝/闲鱼/拼多多/抖音/小红书/美团/携程/亚马逊/皇室战争等）
+examples/   31 个应用目录共 48 个 recipe（淘宝/闲鱼/拼多多/抖音/小红书/美团/皇室战争等）
 helpers/    bypass_bangbang.js、bypass_msa.js、bypass_npth_watchdog.js、xfinject_backend.py、自动点击隐私同意按钮.py
 ```
 
@@ -47,7 +47,7 @@ python 全自动化trace.py -p <package> --clear-only                # 清日志
 
 ## Gadget 注入配合（xfqtrace 做 trace）
 
-- 开源 gadget：`rusda`（vertical/rusda，魔改 server/gadget）+ `inject_rusda_gadget.py` 辅助脚本
+- 开源 gadget：`rusda`（vertical/rusda，魔改 server/gadget）+ `inject_frida_gadget.py` 辅助脚本
 - 私有 gadget：小佳 gadget 16.5.7（zygisk 模块方式）
 - 连接：`frida -H 127.0.0.1:14725 -n Gadget -l examples/com.xiaofeng.qbdi/gadget_trace.js`
 
